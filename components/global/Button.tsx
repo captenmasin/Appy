@@ -9,7 +9,7 @@ interface ButtonProps extends PressableProps {
 
 export default function Button({children, onPress, variant = 'default'}: ButtonProps){
     const baseParentStyles: string = "focus:ring-4 border rounded-lg px-5 py-2.5 me-2 mb-2 focus:outline-none"
-    const baseTextStyles: string = "text-white font-medium text-sm"
+    const baseTextStyles: string = "font-medium text-sm"
 
     const getButtonVariation = (variant: string) => {
         switch (variant) {
