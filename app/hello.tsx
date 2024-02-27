@@ -1,8 +1,9 @@
 import {Text, TextInput, View} from "react-native";
 import * as Haptics from 'expo-haptics';
-import Button from "../components/global/Button";
+// import Button from "../components/global/Button";
 import {Image} from "expo-image";
 import {useState} from "react";
+import {Button} from "flowbite-react";
 
 const blurhash =
     '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
@@ -14,7 +15,8 @@ export default function Page() {
     return (
         <View>
             <Text>Hello world???????</Text>
-            <Button text={"Click me babyyyyyy"} onPress={() => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)} />
+            <Button>Click me</Button>
+            {/*<Button text={"Click me babyyyyyy"} onPress={() => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)} />*/}
 
             <TextInput
                 onChangeText={onChangeText}
