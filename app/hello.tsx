@@ -1,4 +1,4 @@
-import {Text, TextInput, View} from "react-native";
+import {Platform, Text, TextInput, View} from "react-native";
 import * as Haptics from 'expo-haptics';
 import Button from "../components/global/Button";
 import {Image} from "expo-image";
@@ -14,7 +14,9 @@ export default function Page() {
     return (
         <View>
             <Text>Hello world???????</Text>
-            <Button text={"Click me babyyyyyy"} onPress={() => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)} />
+            <Button onPress={() => Platform.OS === 'web' ? console.log('click') : Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)}>
+                Click me babyyyyyy
+            </Button>
 
             <TextInput
                 onChangeText={onChangeText}

@@ -14,8 +14,13 @@ export default function Page() {
     return (
         <View>
             {data === null ? null : <Text>{data}</Text>}
-            <Button text={pressed ? 'Yay!' : 'Press me!'} variant='red' onPress={() => setPressed(!pressed)} />
-            <Button text={'Fetch data from API'} onPress={fetchData} />
+            <Button variant='red' onPress={() => setPressed(!pressed)}>
+                {pressed ? 'Yay!' : 'Press me!'}
+            </Button>
+
+            <Button onPress={fetchData}>
+                Fetch data from API
+            </Button>
         </View>
     );
 }
