@@ -15,7 +15,9 @@ export default function Layout() {
             <SafeAreaProvider>
                 <SafeAreaView>
                     <Navbar/>
-                    <Slot/>
+                    <View className={"container mx-auto p-4"}>
+                        <Slot/>
+                    </View>
                     <StatusBar style="dark"/>
                 </SafeAreaView>
             </SafeAreaProvider>
