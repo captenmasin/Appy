@@ -1,8 +1,9 @@
 import {useState} from "react";
 import fetchWrapper from "../helpers/api";
 import {Pressable, Text, View} from "react-native";
+import Button from "../components/global/Button";
 
-export default function Home() {
+export default function Page() {
     const [data, setData] = useState<any>(null);
 
     const fetchData = async () => {
@@ -13,12 +14,8 @@ export default function Home() {
     return (
         <View>
             {data === null ? null : <Text>{data}</Text>}
-            <Pressable onPress={() => setPressed(!pressed)}>
-                {pressed ? <Text className="bg-red-500">Yay!</Text> : <Text className="bg-blue-500">Press me!</Text>}
-            </Pressable>
-            <Pressable onPress={fetchData}>
-                <Text>Fetch data from API</Text>
-            </Pressable>
+            <Button text={pressed ? 'Yay!' : 'Press me!'} variant='red' onPress={() => setPressed(!pressed)} />
+            <Button text={'Fetch data from API'} onPress={fetchData} />
         </View>
     );
 }
