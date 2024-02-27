@@ -1,5 +1,4 @@
-import { APP_TOKEN, API_URL } from '@env';
-
+import env from "./env";
 
 interface FetchOptions {
     method?: 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -8,11 +7,10 @@ interface FetchOptions {
 }
 
 const fetchWrapper = async (endpoint: string, options: FetchOptions = {}) => {
-    const url = `${API_URL}/${endpoint}`;
+    const url = `${env('API_URL')}/${endpoint}`;
     const headers = new Headers({
         'Content-Type': 'application/json',
-        'app-token': APP_TOKEN,
-        // Add any other headers you need, like authorization tokens
+        'app-token':env('API_TOKEN'),
         ...options.headers,
     });
 
