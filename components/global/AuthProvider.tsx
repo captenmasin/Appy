@@ -5,15 +5,17 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
     const [userToken, setUserToken] = useState(null);
+    const [isAuthCheckComplete, setIsAuthCheckComplete] = useState(false);
 
     useEffect(() => {
-        // Check token existence and validity on app launch
-        checkToken();
+        checkToken().finally(() => {
+            setIsAuthCheckComplete(true);
+        });
     }, []);
 
     const checkToken = async () => {
         try {
-            const token = await StorageManager.getData('api_user_token');
+            const token = await StorageManager.getItem('api_user_token');
             if (token) {
                 // Optionally verify token's validity with the backend
                 setUserToken(token);
@@ -23,18 +25,18 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const login = async (newToken) => {
-        await StorageManager.setData('api_user_token', newToken);
+    const login = async (newToken: string) => {
+        await StorageManager.setItem('api_user_token', newToken);
         setUserToken(newToken);
     };
 
     const logout = async () => {
-        await StorageManager.removeData('api_user_token');
+        await StorageManager.deleteItem('api_user_token');
         setUserToken(null);
     };
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn: !!userToken, login, logout }}>
+        <AuthContext.Provider value={{ isLoggedIn: !!userToken, isAuthCheckComplete, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

@@ -2,7 +2,7 @@ import {Platform} from "react-native";
 import * as SecureStore from 'expo-secure-store';
 
 class StorageManager {
-    static async getData(name: string, defaultValue: any = null): Promise<any> {
+    static async getItem(name: string, defaultValue: any = null): Promise<any> {
         if (Platform.OS === 'web') {
             const data = localStorage.getItem(name);
             return data === null ? defaultValue : JSON.parse(data);
@@ -11,7 +11,7 @@ class StorageManager {
         }
     }
 
-    static async setData(name: string, data: any = null): Promise<void> {
+    static async setItem(name: string, data: any = null): Promise<void> {
         if (Platform.OS === 'web') {
             localStorage.setItem(name, JSON.stringify(data));
         } else {
@@ -19,7 +19,7 @@ class StorageManager {
         }
     }
 
-    static async removeData(name: string): Promise<void>{
+    static async deleteItem(name: string): Promise<void>{
         if (Platform.OS === 'web') {
             localStorage.removeItem(name);
         } else {

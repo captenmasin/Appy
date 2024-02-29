@@ -3,19 +3,24 @@ import Button from "../components/global/Button";
 import ApiService from "../services/ApiService";
 import {useEffect, useState} from "react";
 import {Image} from "expo-image";
+import {useAuth} from "../components/global/AuthProvider";
+import useRedirectUnauthenticated from "../hooks/useRedirectUnauthenticated";
+import StorageManager from "../services/StorageManager";
 
 export default function Page() {
+    useRedirectUnauthenticated();
     const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState<any>(null);
 
+    const [token, setToken] = useState(null);
+
     const loadUser = async () => {
+        setToken(await StorageManager.getItem('api_user_token'));
         try {
             const response = await ApiService.authRequest('user');
-            console.log(response);
             setUser(response.data);
             setIsLoading(false);
         } catch (error) {
-            console.error(error);
             setIsLoading(false);
         }
     }
@@ -26,6 +31,7 @@ export default function Page() {
 
     return (
         <View>
+            <Text>{token}</Text>
             {isLoading ? (
                 <Text>Loading...</Text>
             ) : null}

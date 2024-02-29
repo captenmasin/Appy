@@ -1,13 +1,13 @@
 import {Pressable, PressableProps, Text} from "react-native";
-import {Slot} from "expo-router";
 
 interface ButtonProps extends PressableProps {
-    onPress: () => void,
+    onPress?: () => void,
     children?: any,
     variant?: string,
+    type?: string,
 }
 
-export default function Button({children, onPress, variant = 'default'}: ButtonProps){
+export default function Button({children, type = 'text', onPress, variant = 'default'}: ButtonProps){
     const baseParentStyles: string = "focus:ring-4 border rounded-lg px-5 py-2.5 me-2 mb-2 focus:outline-none"
     const baseTextStyles: string = "font-medium text-sm"
 

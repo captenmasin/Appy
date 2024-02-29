@@ -13,6 +13,7 @@ class ApiService {
         const headers = new Headers({
             'Content-Type': 'application/json',
             'app-token': env('API_TOKEN'),
+            'test-header': 'test-value',
             ...options.headers,
         });
 
@@ -38,9 +39,10 @@ class ApiService {
     }
 
     static async authRequest(endpoint: string, options: FetchOptions = {}): Promise<any> {
-        const token = await StorageManager.getData('api_user_token');
+        const token = await StorageManager.getItem('api_user_token');
         options.headers ={
             Authorization: `Bearer ${token}`,
+            'test-header': 'test-value',
             ...options.headers,
         };
 
